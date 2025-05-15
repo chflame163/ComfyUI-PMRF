@@ -1,7 +1,18 @@
 # ComfyUI-PMRF
 
-### ComfyUI node for [PMRF](https://github.com/ohayonguy/PMRF)
+Fork from https://github.com/2kpr/ComfyUI-PMRF
 
+* Modified the loading local model on the original project
+* Add dependency package list (requirements.txt), you can find ```natten``` whl form [here](https://github.com/chflame163/Collect_WHL_realted_to_ComfyUI)
+
+Download models:    
+[retinaface_resnet50.pth](https://huggingface.co/shilongz/FlashFace-SD1.5/resolve/main/retinaface_resnet50.pth) to ComfyUI/model/facexlib    
+[PMRF_blind_face_image_restgoration](https://huggingface.co/ohayonguy/PMRF_blind_face_image_restoration/tree/main) to ComfyUI/model/pmrf    
+[Real-ESRGAN](https://huggingface.co/2kpr/Real-ESRGAN/tree/main) to ComfyUI/models/upscale_models
+
+
+# Original Readme
+### ComfyUI node for [PMRF](https://github.com/ohayonguy/PMRF)
 ![ComfyUI-PMRF](https://github.com/user-attachments/assets/c6692669-7335-424b-8377-b9aa85ac258c)
 
 Install by git cloning this repo to your ComfyUI custom_nodes directory and then restarting ComfyUI, after which all the PMRF models will be downloaded and necessary packages like NATTEN will be automatically installed for you...

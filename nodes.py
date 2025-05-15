@@ -14,8 +14,16 @@ import numpy as np
 from PIL import Image
 import os
 import folder_paths
+import warnings
+
+# 忽略特定的警告
+warnings.filterwarnings("ignore", category=UserWarning, module="torchvision.models._utils")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# 添加模型路径配置
+MODEL_DIR = os.path.join(folder_paths.models_dir, "facexlib")
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 def set_realesrgan():
     use_half = False
@@ -126,6 +134,7 @@ def inference(
         interpolation = cv2.INTER_LINEAR_EXACT
     elif interpolation == "nearest_exact":
         interpolation = cv2.INTER_NEAREST_EXACT
+
     imgs_output = []
     for img in imgs:
         img = img.permute(2, 0, 1)
@@ -147,10 +156,10 @@ def inference(
             save_ext="png",
             use_parse=True,
             device=device,
-            model_rootpath=None,
+            model_rootpath=MODEL_DIR,
         )
 
-        cropped_face, restored_faces, restored_img = enhance_face(
+        cropped_faces, restored_faces, restored_img = enhance_face(
             img,
             face_helper,
             num_flow_steps=num_flow_steps,
@@ -192,6 +201,7 @@ class PMRF:
 NODE_CLASS_MAPPINGS = {
     "PMRF": PMRF,
 }
+
 NODE_DISPLAY_NAME_MAPPINGS = {
     "PMRF": "PMRF",
 }
